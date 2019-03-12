@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from issuetracker.views import get_issues_list , create_an_issue
+from issuetracker.views import get_issues_list , create_an_issue , edit_an_issues ,toggle_status
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+     url(r'^admin/', admin.site.urls),
      url(r'^$', get_issues_list),
-     url(r'^add$', create_an_issue)
+     url(r'^add$', create_an_issue),
+     url(r'^edit/(?P<id>\d+)$', edit_an_issues),
+     url(r'^toggle/(?P<id>\d+)$', toggle_status),
     
 
 ]

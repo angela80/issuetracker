@@ -1,5 +1,6 @@
-from django.shortcuts import render,HttpResponse, redirect
+from django.shortcuts import render,HttpResponse, redirect,get_object_or_404
 from .models import Issues
+from .forms import IssuesForm
 
 
 # Create your views here.
@@ -14,9 +15,31 @@ def get_issues_list(request):
     
 def create_an_issue(request):
     if request.method=="POST":
-        new_issue = Issues()
-        new_issue.done = 'done'in request.POST
-        new_issue.name= request.POST.get('name')
+        form = IssuesForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(get_issues_list)
+            
+    else:
+        form=IssuesForm()
+    return render(request, "issue_form.html", {'form':form})
+    
+
+def edit_an_issues(request, id ):
+    issues = get_object_or_404(Issues, pk=id)
+    
+    if request.method=="POST":
+       form = IssuesForm(request.POST,instance=issues)
+       if form.is_valid():
+           form.save()
+       return redirect(get_issues_list) 
+    else:    
+        form = IssueForm(instance=issue) 
         
-        return redirect(get_issues_list)
-    return render(request, "issue_form.html")
+    return render(request, "issue_form.html", {'form':form})
+    
+def  toggle_status(request,id):
+     issues = get_object_or_404(Issues, pk=id)
+     issues.done = not issues.done 
+     issues.save()
+     return redirect(get_issues_list)     
