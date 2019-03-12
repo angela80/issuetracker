@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from issuetracker.views import get_issues_list
+from issuetracker.views import get_issues_list , create_an_issue
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
      url(r'^$', get_issues_list),
+     url(r'^add$', create_an_issue)
     
 
 ]
