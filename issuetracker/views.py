@@ -34,7 +34,7 @@ def edit_an_issues(request, id ):
            form.save()
        return redirect(get_issues_list) 
     else:    
-        form = IssueForm(instance=issue) 
+        form = IssuesForm(instance=issues) 
         
     return render(request, "issue_form.html", {'form':form})
     
