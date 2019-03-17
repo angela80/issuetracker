@@ -25,7 +25,8 @@ SECRET_KEY = '%lb)!x%t41t(wpzp@n&%ps8j4r=1wwrfyj9_pwkvre%n@u@9t@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['issuetracker-angela80.c9users.io' ]
+ALLOWED_HOSTS = ['issuetracker-angela80.c9users.io'
+                  'simple-django_issuetracker.herokuapp.com' ]
 
 
 # Application definition
