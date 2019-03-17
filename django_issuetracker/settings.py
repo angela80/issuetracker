@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['issuetracker-angela80.c9users.io', 'simple-django_issuetracker.herokuapp.com' ]
 
+host = os.environ.get('SITE_HOST')
+if host:
+    ALLOWED_HOSTS.append(host)
+
 
 # Application definition
 
